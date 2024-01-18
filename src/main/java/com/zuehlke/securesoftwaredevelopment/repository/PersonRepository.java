@@ -6,6 +6,7 @@ import com.zuehlke.securesoftwaredevelopment.domain.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -96,8 +97,10 @@ public class PersonRepository {
         ) {
             String firstName = personUpdate.getFirstName() != null ? personUpdate.getFirstName() : personFromDb.getFirstName();
             String email = personUpdate.getEmail() != null ? personUpdate.getEmail() : personFromDb.getEmail();
-            statement.setString(1, firstName);
-            statement.setString(2, email);
+            String newfirstName = HtmlUtils.htmlEscape(firstName);
+            String newEmail = HtmlUtils.htmlEscape(email);
+            statement.setString(1, newfirstName);
+            statement.setString(2, newEmail);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
