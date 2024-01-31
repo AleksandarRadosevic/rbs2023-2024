@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7426b0dd-4e66-4785-9e7e-e97d54a4a898" name="Changes" comment="Attack!">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/domain/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/buy-gift.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csrf-exploit/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/csrf-exploit/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,11 @@
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "aleksandarRadosevic",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/danko/Desktop/RBS/SecureSoftwareDevelopment",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,7 +85,7 @@
       </method>
     </configuration>
     <configuration name="SecureSoftwareDevelopmentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
-      <module name="rbs2023-2024" />
+      <module name="secure-software-development" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.zuehlke.securesoftwaredevelopment.SecureSoftwareDevelopmentApplication" />
       <extension name="coverage">
         <pattern>
@@ -97,6 +102,13 @@
         <item itemvalue="Spring Boot.SecureSoftwareDevelopmentApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-f644763e9732-f719d367" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -119,6 +131,7 @@
       <workItem from="1703409511845" duration="1567000" />
       <workItem from="1703929653677" duration="629000" />
       <workItem from="1703930999804" duration="25079000" />
+      <workItem from="1706726304591" duration="126000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1670698325007</created>
