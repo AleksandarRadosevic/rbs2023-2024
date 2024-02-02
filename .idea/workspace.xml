@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7426b0dd-4e66-4785-9e7e-e97d54a4a898" name="Changes" comment="Attack!">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7426b0dd-4e66-4785-9e7e-e97d54a4a898" name="Changes" comment="VIEW_GIFT_LIST, CREATE_GIFT implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csrf-exploit/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/csrf-exploit/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/persons.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/persons.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,16 +50,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
+    "Maven.secure-software-development [clean].executor": "Run",
+    "Maven.secure-software-development [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.SecureSoftwareDevelopmentApplication.executor": "Debug",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "aleksandarRadosevic",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/danko/Desktop/RBS/SecureSoftwareDevelopment",
+    "last_opened_file_path": "C:/Users/Aleksandar/IdeaProjects/rbs2023-2024",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -131,7 +136,8 @@
       <workItem from="1703409511845" duration="1567000" />
       <workItem from="1703929653677" duration="629000" />
       <workItem from="1703930999804" duration="25079000" />
-      <workItem from="1706726304591" duration="126000" />
+      <workItem from="1706726304591" duration="1835000" />
+      <workItem from="1706862762146" duration="12816000" />
     </task>
     <task id="LOCAL-00001" summary="Init commit">
       <created>1670698325007</created>
@@ -147,7 +153,39 @@
       <option name="project" value="LOCAL" />
       <updated>1670775853780</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="CSRF attack - implementation">
+      <option name="closed" value="true" />
+      <created>1706726715109</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706726715109</updated>
+    </task>
+    <task id="LOCAL-00004" summary="CSRF defence - implementation">
+      <option name="closed" value="true" />
+      <created>1706867174158</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1706867174158</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Database tables roles,permissions,roles_to_permissions filled with data ADD_COMMENT implementation finished">
+      <option name="closed" value="true" />
+      <created>1706883665769</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706883665769</updated>
+    </task>
+    <task id="LOCAL-00006" summary="VIEW_GIFT_LIST, CREATE_GIFT implemented">
+      <option name="closed" value="true" />
+      <created>1706887222769</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706887222769</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +207,11 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Init commit" />
     <MESSAGE value="Attack!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attack!" />
+    <MESSAGE value="CSRF attack - implementation" />
+    <MESSAGE value="CSRF defence - implementation" />
+    <MESSAGE value="Database tables roles,permissions,roles_to_permissions filled with data ADD_COMMENT implementation finished" />
+    <MESSAGE value="VIEW_GIFT_LIST, CREATE_GIFT implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="VIEW_GIFT_LIST, CREATE_GIFT implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -197,6 +239,11 @@
         <PinnedItemInfo parentTag="com.zuehlke.securesoftwaredevelopment.domain.NewGift" memberName="tags" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="model" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -36,7 +36,7 @@
             <td th:text="${person.firstName}"></td>
             <td th:text="${person.lastName}"></td>
             <td th:text="${person.email}"></td>
-            <td><a th:href="@{/persons/{id}(id=${person.id})}">View profile</a></td>
+            <td><a th:href="@{/persons/{id}(id=${person.id})}" sec:authorize="hasAuthority('VIEW_PERSON')">View profile</a></td>
         </tr>
         </tbody>
     </table>
@@ -67,7 +67,10 @@
                             tdElement.innerHTML = person.email;
                             tableRowElement.appendChild(tdElement);
                             tdElement = document.createElement("td");
-                            tdElement.innerHTML = '<a href="/persons/' + person.id + '">View profile</a>';
+                            let aElement = document.createElement("a");
+                            aElement.setAttribute("sec:authorize", "hasAuthority('VIEW_PERSON')");
+                            aElement.href="/persons/" + person.id;
+                            tdElement.appendChild(aElement);
                             tableRowElement.appendChild(tdElement);
 
                             tableContent.appendChild(tableRowElement);
