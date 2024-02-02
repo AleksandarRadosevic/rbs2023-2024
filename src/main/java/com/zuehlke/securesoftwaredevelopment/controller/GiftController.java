@@ -105,6 +105,7 @@ public class GiftController {
     }
 
     @GetMapping("/buy-gift/{id}")
+    @PreAuthorize("hasAuthority('BUY_GIFT')")
     public String showBuyCar(
             @PathVariable("id") int id,
             @RequestParam(required = false) boolean addressError,
@@ -123,6 +124,7 @@ public class GiftController {
     }
 
     @PostMapping("/buy-gift/{id}")
+    @PreAuthorize("hasAuthority('BUY_GIFT')")
     public String buyCar(@PathVariable("id") int id, @RequestParam(name = "count", required = true) int count, Address address, Model model) {
         if (address.getAddress().length() < 10) {
             return String.format("redirect:/buy-gift/%s?addressError=true", id);

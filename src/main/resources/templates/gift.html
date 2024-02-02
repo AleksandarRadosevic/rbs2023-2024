@@ -39,11 +39,11 @@
           <label>Rating:</label>
           <b><label th:text="${averageRating}"></label></b>
       </div>
-      <div class="form-group">
+      <div class="form-group" sec:authorize="hasAuthority('RATE_GIFT')">
           <label>My rating:</label>
           <b><label th:text="${userRating}"></label></b>
       </div>
-      <div class="form-group">
+      <div class="form-group" sec:authorize="hasAuthority('RATE_GIFT')">
           <input type="radio" id="1" name="rating" value="1">
           <label for="1">1</label>
           <input type="radio" id="2" name="rating" value="2">
@@ -58,7 +58,7 @@
       </div>
       </form>
   </div>
-  <div class="mt-2 mb-2">
+  <div class="mt-2 mb-2" sec:authorize="hasAuthority('BUY_GIFT')">
       <a th:href="@{'/buy-gift/' + ${gift.id}}">Buy gift</a>
   </div>
   <h2 id="gift-comments">Gift comments</h2>
