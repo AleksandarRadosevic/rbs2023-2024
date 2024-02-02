@@ -4,6 +4,7 @@ values (1, 'bruce', 'wayne'),
        (3, 'tom', 'guessmeifyoucan'),
        (4, 'santa', 'clause');
 
+
 insert into persons(id, firstName, lastName, email)
 values (1, 'bruce', 'wayne', 'notBatman@gmail.com'),
        (2, 'Peter', 'Petigrew', 'oneFingernailFewerToClean@gmail.com'),
@@ -81,12 +82,10 @@ values (1, 1), -- admin start
        (2, 2),
        (2, 3),
        (2, 4),
-       (2, 6),
        (2, 7),
        (2, 9), -- manager end
        (3, 1), -- buyer start
        (3, 2),
-       (3, 6),
        (3, 7),
        (3, 8),
        (3, 9); -- buyer end
