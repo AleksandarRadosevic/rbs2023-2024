@@ -35,7 +35,7 @@ public class PersonRepository {
                 personList.add(createPersonFromResultSet(rs));
             }
         } catch (SQLException e) {
-            LOG.warn("Failed to retrieve persons. Reason: {}",e.toString());
+            LOG.warn("Failed to retrieve persons. Reason: {}", e.toString());
         }
         return personList;
     }
@@ -50,9 +50,8 @@ public class PersonRepository {
             while (rs.next()) {
                 personList.add(createPersonFromResultSet(rs));
             }
-        }
-        catch (SQLException e){
-            LOG.warn("Failed to retrieve persons for search term: {}, reason: {}",searchTerm,e.toString());
+        } catch (SQLException e) {
+            LOG.warn("Failed to retrieve persons for search term: {}, reason: {}", searchTerm, e.toString());
         }
         return personList;
     }
@@ -66,7 +65,7 @@ public class PersonRepository {
                 return createPersonFromResultSet(rs);
             }
         } catch (SQLException e) {
-            LOG.warn("Failed to retrieve person {}, reason: {}",personId,e.toString());
+            LOG.warn("Failed to retrieve person {}, reason: {}", personId, e.toString());
         }
 
         return null;
@@ -78,8 +77,10 @@ public class PersonRepository {
              Statement statement = connection.createStatement();
         ) {
             statement.executeUpdate(query);
+            AuditLogger.getAuditLogger(PersonRepository.class)
+                    .audit("Person " + personId + "has been successfully deleted");
         } catch (SQLException e) {
-            LOG.warn("Failed to delete person {}, reason: {}",personId,e.toString());
+            LOG.warn("Failed to delete person {}, reason: {}", personId, e.toString());
         }
     }
 
@@ -105,8 +106,16 @@ public class PersonRepository {
             statement.setString(1, newfirstName);
             statement.setString(2, newEmail);
             statement.executeUpdate();
+            AuditLogger.getAuditLogger(PersonRepository.class).auditChange(
+                    new Entity(
+                            "person.update",
+                            String.valueOf(personFromDb.getId()),
+                            personFromDb.toString(),
+                            personUpdate.toString()
+                    )
+            );
         } catch (SQLException e) {
-            LOG.warn("Failed to update person {}, reason: {}",personUpdate.getId(),e.toString());
+            LOG.warn("Failed to update person {}, reason: {}", personUpdate.getId(), e.toString());
         }
     }
 }

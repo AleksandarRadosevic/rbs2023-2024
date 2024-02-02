@@ -37,12 +37,12 @@ public class GiftRepository {
                 giftList.add(gift);
             }
         } catch (SQLException e) {
-            LOG.warn("Failed to get gifts, reason: {}",e.toString());
+            LOG.warn("Failed to get gifts, reason: {}", e.toString());
         }
         return giftList;
     }
 
-    public List<Gift> search(String searchTerm){
+    public List<Gift> search(String searchTerm) {
         List<Gift> giftList = new ArrayList<>();
         String query = "SELECT DISTINCT g.id, g.name, g.description, g.price FROM gift g, gift_to_tag gt, tags t" +
                 " WHERE g.id = gt.giftId" +
@@ -55,9 +55,8 @@ public class GiftRepository {
             while (rs.next()) {
                 giftList.add(createGiftFromResultSet(rs));
             }
-        }
-        catch (SQLException e){
-            LOG.warn("Failed to retrieve gifts for search term {}, reason: {}",searchTerm, e.toString());
+        } catch (SQLException e) {
+            LOG.warn("Failed to retrieve gifts for search term {}, reason: {}", searchTerm, e.toString());
         }
         return giftList;
     }
@@ -86,7 +85,7 @@ public class GiftRepository {
                 return gift;
             }
         } catch (SQLException e) {
-            LOG.warn("Failed to get gift {}, reason: {}",giftId,e.toString());
+            LOG.warn("Failed to get gift {}, reason: {}", giftId, e.toString());
         }
 
         return null;
@@ -113,6 +112,8 @@ public class GiftRepository {
                         statement2.setInt(1, (int) finalId);
                         statement2.setInt(2, tag.getId());
                         statement2.executeUpdate();
+                        AuditLogger.getAuditLogger(GiftRepository.class)
+                                .audit("Successfully created gift " + gift);
                     } catch (SQLException e) {
                         LOG.warn("Failed to add new gifts to tags. Reason:{}", e.toString());
                     }
@@ -136,8 +137,10 @@ public class GiftRepository {
             statement.executeUpdate(query2);
             statement.executeUpdate(query3);
             statement.executeUpdate(query4);
+            AuditLogger.getAuditLogger(GiftRepository.class)
+                    .audit("The gift " + giftId + " is successfully deleted");
         } catch (SQLException e) {
-            LOG.warn("Failed to delete gift {}, reason: {}",giftId, e.toString());
+            LOG.warn("Failed to delete gift {}, reason: {}", giftId, e.toString());
         }
     }
 

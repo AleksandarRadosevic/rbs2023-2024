@@ -1,5 +1,6 @@
 package com.zuehlke.securesoftwaredevelopment.repository;
 
+import com.zuehlke.securesoftwaredevelopment.config.AuditLogger;
 import com.zuehlke.securesoftwaredevelopment.domain.Comment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,8 @@ public class CommentRepository {
             statement.setInt(2, comment.getUserId());
             statement.setString(3, comment.getComment());
             statement.executeUpdate();
+            AuditLogger.getAuditLogger(CommentRepository.class)
+                    .audit("Successfully created comment for gift " + comment.getGiftId());
         } catch (SQLException e) {
             LOG.warn("Failed to create a comment for user {} and gift {}, Reason:{}", comment.getUserId(), comment.getGiftId(), e.toString());
         }

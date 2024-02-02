@@ -1,5 +1,7 @@
 package com.zuehlke.securesoftwaredevelopment.repository;
 
+import com.zuehlke.securesoftwaredevelopment.config.AuditLogger;
+import com.zuehlke.securesoftwaredevelopment.config.Entity;
 import com.zuehlke.securesoftwaredevelopment.domain.Comment;
 import com.zuehlke.securesoftwaredevelopment.domain.Rating;
 import org.slf4j.Logger;
@@ -38,7 +40,19 @@ public class RatingRepository {
                 preparedStatement.setInt(2, rating.getGiftId());
                 preparedStatement.setInt(3, rating.getUserId());
                 preparedStatement.executeUpdate();
+                Rating ratingBefore = new Rating(rs.getInt(1), rs.getInt(2), rs.getInt(3));
+                AuditLogger
+                        .getAuditLogger(RatingRepository.class).auditChange(
+                                new Entity(
+                                        "rating.update",
+                                        String.valueOf(rating.getGiftId()),
+                                        ratingBefore.toString(),
+                                        rating.toString()
+                                )
+                        );
             } else {
+                AuditLogger.getAuditLogger(RatingRepository.class)
+                        .audit(rating + " is successfully created");
                 PreparedStatement preparedStatement = connection.prepareStatement(query3);
                 preparedStatement.setInt(1, rating.getGiftId());
                 preparedStatement.setInt(2, rating.getUserId());
