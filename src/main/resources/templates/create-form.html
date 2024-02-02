@@ -12,7 +12,7 @@
 <div layout:fragment="content">
     <h1>Add gift</h1>
     <div class="row">
-        <form class="col-5" method="POST" th:action="@{/gifts}">
+        <form class="col-5" method="POST" th:action="@{/gifts}" sec:authorize="hasAuthority('VIEW_GIFT_LIST')">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" class="form-control">
