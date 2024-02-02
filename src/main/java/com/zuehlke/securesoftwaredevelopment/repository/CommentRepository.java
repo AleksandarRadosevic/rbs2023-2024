@@ -28,10 +28,10 @@ public class CommentRepository {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query);
         ) {
-            statement.setInt(1,comment.getGiftId());
-            statement.setInt(2,comment.getUserId());
-            statement.setString(3,comment.getComment());
-            statement.execute(query);
+            statement.setInt(1, comment.getGiftId());
+            statement.setInt(2, comment.getUserId());
+            statement.setString(3, comment.getComment());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
