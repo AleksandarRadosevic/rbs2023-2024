@@ -33,7 +33,7 @@ public class CommentRepository {
             statement.setString(3, comment.getComment());
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.warn("Failed to create a comment for user {} and gift {}, Reason:{}", comment.getUserId(), comment.getGiftId(), e.toString());
         }
     }
 
@@ -47,7 +47,8 @@ public class CommentRepository {
                 commentList.add(new Comment(rs.getInt(1), rs.getInt(2), rs.getString(3)));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.warn("Failed to get comments for gift {}, Reason:{}", giftId, e.toString());
+            LOG.warn("Failed to retrieve comments for gift {}", giftId, e);
         }
         return commentList;
     }

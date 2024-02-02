@@ -4,6 +4,8 @@ import com.zuehlke.securesoftwaredevelopment.domain.Permission;
 import com.zuehlke.securesoftwaredevelopment.domain.User;
 import com.zuehlke.securesoftwaredevelopment.repository.UserRepository;
 import com.zuehlke.securesoftwaredevelopment.service.PermissionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +24,7 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
     private final PermissionService permissionService;
+    private static final Logger LOG = LoggerFactory.getLogger(DatabaseAuthenticationProvider.class);
 
     private static final String PASSWORD_WRONG_MESSAGE = "Authentication failed for username='%s',password='%s'";
 
@@ -42,7 +45,11 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
         if (success) {
             User user = userRepository.findUser(username);
             List<GrantedAuthority> grantedAuthorities = getGrantedAuthorities(user);
+            LOG.info("Login successful for user {}",username);
             return new UsernamePasswordAuthenticationToken(user, password, grantedAuthorities);
+        }
+        else {
+            LOG.info("Invalid credentials. Login failed for user {}",username);
         }
 
         throw new BadCredentialsException(String.format(PASSWORD_WRONG_MESSAGE, username, password));

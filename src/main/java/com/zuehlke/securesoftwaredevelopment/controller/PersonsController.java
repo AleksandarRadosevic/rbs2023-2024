@@ -43,7 +43,8 @@ public class PersonsController {
         if (!SecurityUtil.hasPermission("VIEW_PERSON")) {
             int currentUserId = SecurityUtil.getCurrentUser().getId();
             if (currentUserId != id) {
-                throw new AccessDeniedException("Forbidden");
+                LOG.error("User with id:{} does not have rights to visit this page",currentUserId);
+                throw new AccessDeniedException("Access forbidden");
             }
         }
 
@@ -69,12 +70,14 @@ public class PersonsController {
         if (!SecurityUtil.hasPermission("UPDATE_PERSON")) {
             int currentId = SecurityUtil.getCurrentUser().getId();
             if (id != currentId) {
-                throw new AccessDeniedException("NO ACCESS!!!");
+                LOG.error("User with id:{} does not have rights to perform the specified DELETE action",currentId);
+                throw new AccessDeniedException("Access Forbidden");
             }
         }
 
         personRepository.delete(id);
         userRepository.delete(id);
+        LOG.info("Successful deleted user with id: "+id);
 
         return ResponseEntity.noContent().build();
     }
@@ -83,14 +86,15 @@ public class PersonsController {
     public String updatePerson(Person person, HttpSession httpSession, @RequestParam("csrfToken") String csrfToken) throws AccessDeniedException {
         String csrf = httpSession.getAttribute("CSRF_TOKEN").toString();
         if (!csrf.equals(csrfToken)) {
-            throw new AccessDeniedException("NO ACCESS!!!");
+            throw new AccessDeniedException("Access Forbidden");
         }
 
         if (!SecurityUtil.hasPermission("UPDATE_PERSON")) {
             int personId = Integer.parseInt(person.getId());
             int currentId = SecurityUtil.getCurrentUser().getId();
             if (personId != currentId) {
-                throw new AccessDeniedException("NO ACCESS!!!");
+                LOG.error("User with id:{} does not have rights to perform the specified UPDATE action",currentId);
+                throw new AccessDeniedException("Access Forbidden");
             }
         }
 

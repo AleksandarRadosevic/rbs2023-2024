@@ -32,7 +32,7 @@ public class TagRepository {
                 tagList.add(new Tag(rs.getInt(1), rs.getString(2)));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.warn("Failed to retrieve all tags, reason: {}",e.toString());
         }
         return tagList;
     }
